@@ -43,11 +43,11 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
       if (data.length) {
         _.each(_.keys(data[0]), function (key) {
           // remove suffixes from `collect`ed keys
-          if (key.match(suffix)) {
+          /*if (key.match(suffix)) {
             _.each(data, function (d) {
               d[key.replace(suffix, '')] = d[key];
             });
-          }
+          }*/
           // cast all datetime strings to moment
           if (this.dateKey(key)) {
             _.each(data, function (d) {
@@ -83,8 +83,7 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
         // if we have a grouped response, flatten the data
         if (data[0].values && this.isXADate()) {
           _.each(data, function (dataset) {
-            var axis = _.findWhere(axes, { groupId: dataset[groupedBy] });
-            this.mergeDataset(dataset, data[0], axis);
+            this.mergeDataset(dataset, data[0], groupedBy);
           }, this);
           data = data[0].values;
         } else if (data[0].values && data[0].values.length > 1) {
@@ -118,15 +117,18 @@ function (Backbone, SafeSync, DateFunctions, Processors, Model, DataSource) {
       return key && (key === '_timestamp' || key.match(/_at$/));
     },
 
-    mergeDataset: function (source, target, axis) {
+    mergeDataset: function (source, target, groupedBy) {
       var valueAttr = this.valueAttr;
       _.each(source.values, function (model, i) {
-        if (axis) {
-          target.values[i][axis.groupId + ':' + valueAttr] = model[valueAttr];
-        } else {
-          target.values[i]['other:' + valueAttr] = target.values[i]['other:' + valueAttr] || 0;
-          target.values[i]['other:' + valueAttr] += model[valueAttr];
+        var keyValue;
+        if (typeof groupedBy === 'string') {
+          keyValue = source[groupedBy];
+        } else if (_.isArray(groupedBy)) {
+          keyValue = _.map(groupedBy, function (key) {
+            return source[key];
+          }).join(':');
         }
+        target.values[i][keyValue + ':' + valueAttr] = model[valueAttr];
       }, this);
     },
 
