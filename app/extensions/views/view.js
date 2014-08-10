@@ -163,7 +163,7 @@ function (Backbone, DateFunctions, Formatters, Modernizr, $, _) {
       var formats = {
         hour: 'h:mma, D MMM YYYY',
         day: 'D MMM YYYY',
-        week: 'D MMM YYYY',
+        week: 'D MMM YYYY h:mm:ssa',
         month: 'MMMM YYYY',
         quarter: 'MMM YYYY'
       };

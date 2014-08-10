@@ -8,11 +8,6 @@ var stagecraftStubDir = path.resolve(__dirname, '../app/support/stagecraft_stub/
     stagecraftStubGlob = path.resolve(stagecraftStubDir, '**/*.json');
 
 var dashboards = [
-  {
-    slug: 'licensing',
-    title: 'Licensing',
-    'dashboard-type': 'transaction'
-  }
 ];
 
 var departments = [],

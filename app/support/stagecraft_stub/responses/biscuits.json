@@ -1,0 +1,88 @@
+{
+  "slug": "biscuits",
+  "page-type": "dashboard",
+  "dashboard-type": "other",
+  "published": true,
+  "strapline": "Dashboard",
+  "title": "Our biscuit tin",
+  "relatedPages": {
+    "transaction": {
+      "title": "About this dashboard",
+      "url": "http://tombooth.co.uk/bismon/"
+    }
+  },
+  "modules": [
+    {
+      "slug": "light",
+      "module-type": "single_timeseries",
+      "title": "Light",
+      "value-attribute": "light",
+      "show-line-labels": true,
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": "_timestamp",
+          "format": "date"
+        },
+        "y": [
+          {
+            "label": "Light",
+            "format": "integer"
+          }
+        ]
+      },
+      "data-source": {
+        "data-group": "biscuits",
+        "data-type": "tin-stats"
+      }
+    },
+    {
+      "slug": "weight",
+      "module-type": "single_timeseries",
+      "title": "Weight",
+      "value-attribute": "weight",
+      "show-line-labels": true,
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": "_timestamp",
+          "format": "date"
+        },
+        "y": [
+          {
+            "label": "Weight",
+            "format": "integer"
+          }
+        ]
+      },
+      "data-source": {
+        "data-group": "biscuits",
+        "data-type": "tin-stats"
+      }
+    },
+    {
+      "slug": "battery",
+      "module-type": "single_timeseries",
+      "title": "Battery",
+      "value-attribute": "battery",
+      "show-line-labels": true,
+      "axes": {
+        "x": {
+          "label": "Date",
+          "key": "_timestamp",
+          "format": "date"
+        },
+        "y": [
+          {
+            "label": "Battery",
+            "format": "integer"
+          }
+        ]
+      },
+      "data-source": {
+        "data-group": "biscuits",
+        "data-type": "tin-stats"
+      }
+    }
+  ]
+}

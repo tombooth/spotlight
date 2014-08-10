@@ -119,11 +119,7 @@ function (View, d3, XAxis, YAxis, YAxisRight, Line, Stack, Hover, Tooltip, Missi
     modelToDate: function (model) {
       var prop = '_start_at';
       var period = this.axisperiod || this.getAxisPeriod();
-      if (period === 'hour') {
         prop = '_timestamp';
-      } else if (period === 'week' || period === 'quarter') {
-        prop = '_end_at';
-      }
       return model.get(prop);
     },
 
